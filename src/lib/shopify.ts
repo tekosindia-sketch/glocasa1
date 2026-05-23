@@ -1,7 +1,17 @@
 import { GraphQLClient } from "graphql-request";
 
-const domain = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN || process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || "glocasaglasswear.myshopify.com";
-const storefrontToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN || "YOUR_STOREFRONT_TOKEN";
+// Shopify Storefront token is a public read-only key - safe to include as fallback
+const SHOPIFY_DOMAIN = "glocasaglasswear.myshopify.com";
+const SHOPIFY_TOKEN = "07da9cd12dbc73cda6981a1ef9a4f919";
+
+const domain =
+  process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN ||
+  process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN ||
+  SHOPIFY_DOMAIN;
+
+const storefrontToken =
+  process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN ||
+  SHOPIFY_TOKEN;
 
 export const shopify = new GraphQLClient(
   `https://${domain}/api/2024-04/graphql.json`,
