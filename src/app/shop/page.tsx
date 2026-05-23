@@ -152,7 +152,7 @@ function ShopContent() {
                     <div className="flex flex-col gap-2 items-end justify-center">
                       <button
                         onClick={() => {
-                          addToCart(product, product.variants[0], 1);
+                          addToCart(product, product.variants[0].id, 1);
                           showToast(`${product.name} added!`);
                         }}
                         className="px-4 py-2 bg-secondary text-secondary-foreground text-[10px] uppercase tracking-widest font-bold hover:bg-primary hover:text-secondary transition-all cursor-pointer"

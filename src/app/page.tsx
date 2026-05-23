@@ -122,7 +122,7 @@ export default function Home() {
                       {product.discountPrice && <span className="text-[10px] text-muted-foreground line-through">₹{product.price}</span>}
                     </div>
                     <div className="flex gap-2 pt-1">
-                      <button onClick={() => { addToCart(product, product.variants[0], 1); showToast(`${product.name} added to cart!`); }} className="flex-1 py-2 bg-secondary text-secondary-foreground text-[10px] uppercase tracking-widest font-bold hover:bg-primary hover:text-secondary transition-all cursor-pointer">Add to Cart</button>
+                      <button onClick={() => { addToCart(product, product.variants[0].id, 1); showToast(`${product.name} added to cart!`); }} className="flex-1 py-2 bg-secondary text-secondary-foreground text-[10px] uppercase tracking-widest font-bold hover:bg-primary hover:text-secondary transition-all cursor-pointer">Add to Cart</button>
                       <button onClick={() => toggleWishlist(product)} className={`p-2 border border-primary/20 hover:bg-primary/10 transition-colors cursor-pointer ${isWished ? "text-red-500" : "text-muted-foreground"}`}><Heart className={`w-4 h-4 ${isWished ? "fill-current" : ""}`} /></button>
                     </div>
                   </div>

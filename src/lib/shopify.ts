@@ -1,6 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 
-const domain = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN || "glocasaglasswear.myshopify.com";
+const domain = process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN || process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN || "glocasaglasswear.myshopify.com";
 const storefrontToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_TOKEN || "YOUR_STOREFRONT_TOKEN";
 
 export const shopify = new GraphQLClient(
@@ -59,3 +59,32 @@ query GetProduct($id: ID!) {
     images(first: 5) { edges { node { src altText } } }
   }
 }`;
+
+// ── Checkout Mutation ────────────────────────────────────────────────────────
+const CHECKOUT_CREATE = `
+mutation CheckoutCreate($input: CheckoutCreateInput!) {
+  checkoutCreate(input: $input) {
+    checkout {
+      id
+      webUrl
+    }
+    userErrors { field message }
+  }
+}`;
+
+/**
+ * Create a Shopify checkout and return the webUrl for redirection.
+ * @param lineItems - Array of { variantId: string, quantity: number }
+ */
+export async function createCheckout(lineItems: { variantId: string; quantity: number }[]): Promise<string> {
+  const input = { lineItems };
+  const response: any = await shopify.request(CHECKOUT_CREATE, { input });
+  const { checkout, userErrors } = response?.checkoutCreate || {};
+  if (userErrors?.length) {
+    throw new Error(userErrors.map((e: any) => e.message).join(", "));
+  }
+  if (!checkout?.webUrl) {
+    throw new Error("Checkout URL not returned from Shopify");
+  }
+  return checkout.webUrl as string;
+}

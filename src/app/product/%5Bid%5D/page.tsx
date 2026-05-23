@@ -15,15 +15,17 @@ export default function ProductDetail() {
   const productId = params?.id ? decodeURIComponent(params.id as string) : "";
   const product = products.find((p) => String(p.id).split("/").pop() === productId || String(p.id) === productId);
 
-  const [selectedVariant, setSelectedVariant] = useState("");
+  const [selectedVariant, setSelectedVariant] = useState<string>("");
+  useEffect(() => {
+    if (product && product.variants.length > 0) {
+      // Initialize with the first variant's ID
+      setSelectedVariant(product.variants[0].id);
+    }
+  }, [product]);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<"desc" | "care" | "shipping">("desc");
 
-  useEffect(() => {
-    if (product && product.variants.length > 0) {
-      setSelectedVariant(product.variants[0]);
-    }
-  }, [product]);
+// Removed duplicate useEffect that set selectedVariant to an object; now using ID string
 
   if (!product) {
     return (
@@ -126,15 +128,15 @@ export default function ProductDetail() {
               <div className="flex gap-2">
                 {product.variants.map((v) => (
                   <button
-                    key={v}
-                    onClick={() => setSelectedVariant(v)}
+                    key={v.id}
+                    onClick={() => setSelectedVariant(v.id)}
                     className={`px-4 py-2 border rounded-xl text-xs tracking-wider transition-all cursor-pointer ${
-                      selectedVariant === v
+                      selectedVariant === v.id
                         ? "border-primary bg-primary/5 text-secondary font-bold"
                         : "border-primary/25 text-muted-foreground hover:border-primary/50"
                     }`}
                   >
-                    {v}
+                    {v.title}
                   </button>
                 ))}
               </div>
