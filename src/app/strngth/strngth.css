@@ -1,0 +1,414 @@
+/* ============================================
+   STRNGTH — Design System
+   Dark anime RPG aesthetic
+============================================ */
+
+@property --gym-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  /* Backgrounds */
+  --gym-bg: #03030a;
+  --gym-surface: #0d0d1a;
+  --gym-surface-2: #111128;
+  --gym-surface-card: rgba(10, 10, 20, 0.95);
+  --gym-surface-subtle: rgba(255, 255, 255, 0.03);
+  --gym-surface-hover: rgba(255, 255, 255, 0.06);
+  --gym-heatmap-empty: rgba(255, 255, 255, 0.07);
+  --gym-nav-bg: rgba(13, 13, 26, 0.96);
+  --gym-topbar-bg: rgba(13, 13, 26, 0.92);
+  --gym-image-bg: rgba(5, 5, 15, 0.9);
+  --gym-overlay: rgba(0, 0, 0, 0.5);
+  --gym-input-bg: rgba(255, 255, 255, 0.05);
+
+  /* Borders */
+  --gym-border: rgba(255, 255, 255, 0.07);
+  --gym-border-2: rgba(255, 255, 255, 0.1);
+  --gym-border-bright: rgba(255, 255, 255, 0.14);
+  --gym-online-border: #0d0d1a;
+
+  /* Accents */
+  --gym-cyan: #00d4ff;
+  --gym-cyan-dim: rgba(0, 212, 255, 0.15);
+  --gym-purple: #8b5cf6;
+  --gym-purple-dim: rgba(139, 92, 246, 0.15);
+  --gym-gold: #f59e0b;
+  --gym-gold-dim: rgba(245, 158, 11, 0.15);
+  --gym-green: #10b981;
+  --gym-red: #ef4444;
+  --gym-pink: #ec4899;
+
+  /* Text */
+  --gym-text: #f0f0ff;
+  --gym-text-dim: rgba(240, 240, 255, 0.5);
+  --gym-text-muted: rgba(240, 240, 255, 0.3);
+  --gym-text-secondary: rgba(240, 240, 255, 0.45);
+  --gym-text-tertiary: rgba(240, 240, 255, 0.35);
+
+  --gym-font-display: 'Orbitron', monospace;
+}
+
+/* === Base Overrides for Strngth section === */
+.strngth {
+  font-family: 'Outfit', sans-serif;
+  background: var(--gym-bg);
+  color: var(--gym-text);
+  min-height: 100dvh;
+}
+
+/* === Light Theme === */
+.strngth[data-theme="light"] {
+  --gym-bg: #eef1f8;
+  --gym-surface: #ffffff;
+  --gym-surface-2: #f4f6fc;
+  --gym-surface-card: rgba(255, 255, 255, 0.95);
+  --gym-surface-subtle: rgba(0, 0, 0, 0.025);
+  --gym-surface-hover: rgba(0, 0, 0, 0.05);
+  --gym-heatmap-empty: rgba(13, 13, 26, 0.12);
+  --gym-nav-bg: rgba(255, 255, 255, 0.97);
+  --gym-topbar-bg: rgba(248, 250, 255, 0.95);
+  --gym-image-bg: rgba(240, 242, 250, 0.9);
+  --gym-overlay: rgba(0, 0, 0, 0.35);
+  --gym-input-bg: rgba(0, 0, 0, 0.04);
+  --gym-border: rgba(0, 0, 0, 0.08);
+  --gym-border-2: rgba(0, 0, 0, 0.1);
+  --gym-border-bright: rgba(0, 0, 0, 0.15);
+  --gym-online-border: #ffffff;
+  --gym-text: #0d0d1a;
+  --gym-text-dim: rgba(13, 13, 26, 0.6);
+  --gym-text-muted: rgba(13, 13, 26, 0.58);
+  --gym-text-secondary: rgba(13, 13, 26, 0.7);
+  --gym-text-tertiary: rgba(13, 13, 26, 0.55);
+}
+.strngth[data-theme="light"] .gym-grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 100, 180, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 100, 180, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.strngth[data-theme="light"] .gym-glass {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(0, 0, 0, 0.07);
+}
+.strngth[data-theme="light"] .gym-glass-bright {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+.strngth[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0, 120, 200, 0.2); }
+.strngth[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: rgba(0, 120, 200, 0.4); }
+
+/* Light theme — nav active state */
+.strngth[data-theme="light"] .gym-nav-item.active {
+  background: linear-gradient(90deg, rgba(0, 150, 200, 0.1), transparent);
+}
+.strngth[data-theme="light"] .gym-nav-item::before {
+  background: #0096c7;
+}
+
+/* Light theme — page section backgrounds (override inline styles via cascade) */
+.strngth[data-theme="light"] main {
+  background: var(--gym-bg);
+}
+
+/* Light theme — card / surface overrides */
+.strngth[data-theme="light"] .gym-xp-bar {
+  background: rgba(0, 0, 0, 0.08);
+}
+.strngth[data-theme="light"] .gym-progress {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* === Background Grid === */
+.gym-grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* === Glassmorphism === */
+.gym-glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--gym-border);
+}
+
+.gym-glass-bright {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--gym-border-bright);
+}
+
+/* === Neon Glows === */
+.gym-glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.25), 0 0 60px rgba(0, 212, 255, 0.08);
+}
+.gym-glow-purple {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.25), 0 0 60px rgba(139, 92, 246, 0.08);
+}
+.gym-glow-gold {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.35), 0 0 60px rgba(245, 158, 11, 0.1);
+}
+.gym-glow-pink {
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.3), 0 0 60px rgba(236, 72, 153, 0.1);
+}
+.gym-glow-red {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3), 0 0 60px rgba(239, 68, 68, 0.1);
+}
+
+/* Text glows */
+.gym-text-glow-cyan  { text-shadow: 0 0 12px rgba(0, 212, 255, 0.7); }
+.gym-text-glow-gold  { text-shadow: 0 0 12px rgba(245, 158, 11, 0.7); }
+.gym-text-glow-purple { text-shadow: 0 0 12px rgba(139, 92, 246, 0.7); }
+.gym-text-glow-pink  { text-shadow: 0 0 12px rgba(236, 72, 153, 0.7); }
+
+/* === Aura Border (rotating gradient) === */
+/* AuraRing — animation handled by Framer Motion in AuraRing.tsx */
+
+/* === XP Bar === */
+.gym-xp-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 100px;
+  overflow: hidden;
+  position: relative;
+}
+.gym-xp-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, #00a8cc, #00d4ff);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.6), 0 0 24px rgba(0, 212, 255, 0.2);
+  position: relative;
+}
+.gym-xp-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 100px;
+  filter: blur(4px);
+}
+
+/* === Rank Badge === */
+.gym-rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--gym-font-display);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  border-radius: 8px;
+  border: 1px solid currentColor;
+  position: relative;
+}
+.gym-rank-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0.12;
+}
+
+/* === Neon Button === */
+.gym-btn {
+  position: relative;
+  overflow: hidden;
+  font-family: var(--gym-font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.gym-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.gym-btn:hover { transform: translateY(-2px); }
+.gym-btn:active { transform: translateY(0); }
+
+.gym-btn-cyan {
+  background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,212,255,0.08));
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  color: var(--gym-cyan);
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.15);
+}
+.gym-btn-cyan:hover { box-shadow: 0 0 24px rgba(0, 212, 255, 0.35), 0 4px 20px rgba(0,0,0,0.3); }
+
+.gym-btn-gold {
+  background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.08));
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: var(--gym-gold);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.15);
+}
+.gym-btn-gold:hover { box-shadow: 0 0 24px rgba(245, 158, 11, 0.35), 0 4px 20px rgba(0,0,0,0.3); }
+
+.gym-btn-purple {
+  background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(139,92,246,0.1));
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  color: #a78bfa;
+  box-shadow: 0 0 16px rgba(139, 92, 246, 0.15);
+}
+.gym-btn-purple:hover { box-shadow: 0 0 24px rgba(139, 92, 246, 0.35), 0 4px 20px rgba(0,0,0,0.3); }
+
+.gym-btn-solid-cyan {
+  background: var(--gym-cyan);
+  border: none;
+  color: #030305;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+.gym-btn-solid-cyan:hover { box-shadow: 0 0 32px rgba(0, 212, 255, 0.6); }
+
+/* === Animations === */
+@keyframes gym-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+@keyframes gym-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes gym-scan {
+  from { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.3; }
+  to { transform: translateY(100vh); opacity: 0; }
+}
+@keyframes gym-shimmer {
+  from { background-position: -200% center; }
+  to { background-position: 200% center; }
+}
+@keyframes gym-xp-pop {
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  30% { transform: translateY(-20px) scale(1.1); opacity: 1; }
+  100% { transform: translateY(-60px) scale(0.9); opacity: 0; }
+}
+@keyframes gym-levelup-in {
+  0% { opacity: 0; transform: scale(0.5) rotate(-5deg); }
+  60% { transform: scale(1.08) rotate(1deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+@keyframes gym-levelup-rays {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes gym-particle-rise {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  100% { transform: translateY(-120px) scale(0); opacity: 0; }
+}
+@keyframes gym-badge-unlock {
+  0% { transform: scale(0) rotate(-20deg); opacity: 0; }
+  70% { transform: scale(1.2) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+@keyframes gym-streak-fire {
+  0%, 100% { transform: scaleY(1) scaleX(1); }
+  33% { transform: scaleY(1.1) scaleX(0.95); }
+  66% { transform: scaleY(0.95) scaleX(1.05); }
+}
+
+/* Utility animations */
+.gym-animate-float { animation: gym-float 4s ease-in-out infinite; }
+.gym-animate-pulse { animation: gym-pulse 2.5s ease-in-out infinite; }
+.gym-animate-badge { animation: gym-badge-unlock 0.6s cubic-bezier(0.34,1.56,0.64,1) both; }
+.gym-animate-streak { animation: gym-streak-fire 1.5s ease-in-out infinite; }
+
+/* === Onboarding ruler picker === */
+.gym-ruler { -webkit-appearance: none; appearance: none; width: 100%; height: 64px; background: transparent; cursor: pointer; margin: 0; }
+.gym-ruler:focus { outline: none; }
+.gym-ruler::-webkit-slider-runnable-track { background: transparent; height: 64px; }
+.gym-ruler::-moz-range-track { background: transparent; height: 64px; }
+.gym-ruler::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 4px; height: 48px; margin-top: 8px; border-radius: 2px; background: #00d4ff; box-shadow: 0 0 12px #00d4ff; }
+.gym-ruler::-moz-range-thumb { width: 4px; height: 48px; border: none; border-radius: 2px; background: #00d4ff; box-shadow: 0 0 12px #00d4ff; }
+
+/* === Onboarding wheel picker (hidden scrollbar) === */
+.gym-wheel { scrollbar-width: none; -ms-overflow-style: none; }
+.gym-wheel::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+/* === Scrollbar === */
+.strngth ::-webkit-scrollbar { width: 4px; }
+.strngth ::-webkit-scrollbar-track { background: transparent; }
+.strngth ::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.2); border-radius: 4px; }
+.strngth ::-webkit-scrollbar-thumb:hover { background: rgba(0, 212, 255, 0.4); }
+
+/* === Nav === */
+.gym-nav-item {
+  position: relative;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+.gym-nav-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 20%; bottom: 20%;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--gym-cyan);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.gym-nav-item.active::before { opacity: 1; }
+.gym-nav-item.active {
+  background: linear-gradient(90deg, rgba(0, 212, 255, 0.1), transparent);
+}
+
+/* === Level Up Overlay === */
+.gym-levelup-rays {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg, rgba(0,212,255,0.08) 4deg, transparent 8deg,
+    transparent 40deg, rgba(0,212,255,0.08) 44deg, transparent 48deg,
+    transparent 80deg, rgba(0,212,255,0.08) 84deg, transparent 88deg,
+    transparent 120deg, rgba(0,212,255,0.08) 124deg, transparent 128deg,
+    transparent 160deg, rgba(0,212,255,0.08) 164deg, transparent 168deg,
+    transparent 200deg, rgba(0,212,255,0.08) 204deg, transparent 208deg,
+    transparent 240deg, rgba(0,212,255,0.08) 244deg, transparent 248deg,
+    transparent 280deg, rgba(0,212,255,0.08) 284deg, transparent 288deg,
+    transparent 320deg, rgba(0,212,255,0.08) 324deg, transparent 328deg
+  );
+  animation: gym-levelup-rays 8s linear infinite;
+  pointer-events: none;
+}
+
+/* === Heatmap === */
+.gym-heatmap-cell {
+  border-radius: 3px;
+  transition: transform 0.15s;
+}
+.gym-heatmap-cell:hover { transform: scale(1.4); }
+
+/* === Progress Bar (generic) === */
+.gym-progress {
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.gym-progress-fill {
+  height: 100%;
+  border-radius: 100px;
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* === Shine effect === */
+.gym-shine {
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%);
+  background-size: 200% 100%;
+  animation: gym-shimmer 3s linear infinite;
+}

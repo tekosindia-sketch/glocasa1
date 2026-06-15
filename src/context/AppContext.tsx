@@ -188,6 +188,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
           setProducts(mapped);
         }
       } catch (error) {
+        if ((error as { name?: string })?.name === 'AbortError') return;
         console.warn("Unable to connect to Shopify Storefront API. Keeping local glassware curations active.", error);
       }
     }

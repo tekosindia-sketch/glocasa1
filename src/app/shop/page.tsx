@@ -229,7 +229,7 @@ function ShopContent() {
                     </div>
                     <button
                       onClick={() => {
-                        addToCart(product, product.variants[0], 1);
+                        addToCart(product, product.variants[0]?.title ?? '', 1);
                         showToast(`${product.name} added to cart!`);
                       }}
                       className="w-full py-2 bg-secondary text-secondary-foreground text-[10px] uppercase tracking-widest font-bold hover:bg-primary hover:text-secondary transition-all cursor-pointer mt-1"

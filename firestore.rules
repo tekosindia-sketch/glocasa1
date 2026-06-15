@@ -1,0 +1,49 @@
+rules_version = '2';
+
+// GYMIFY Firestore security rules.
+// Every user can read/write ONLY their own data tree under users/{uid}.
+// The `subscription` field is admin-write-only: users can create their
+// initial document (which includes the default free subscription) but
+// cannot change the subscription block after creation.
+// Provider-agnostic: works for email/password, Google, and any future
+// provider because it only checks request.auth.uid.
+// Everything else is denied by default.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    // True when subscription is not being modified in this write.
+    // On merge writes the client only sends changed fields, so
+    // request.resource.data.subscription equals resource.data.subscription
+    // when the client hasn't touched it.
+    function subscriptionUnchanged() {
+      return request.resource.data.subscription == resource.data.subscription;
+    }
+
+    match /users/{uid} {
+      // Users can always read their own document (subscription included).
+      allow read: if isOwner(uid);
+
+      // Initial document creation is allowed in full (sets default free subscription).
+      allow create: if isOwner(uid);
+
+      // On update: the subscription field must stay exactly as it was.
+      // Only the Firebase Admin SDK or Firestore console can change it.
+      allow update: if isOwner(uid) && subscriptionUnchanged();
+
+      // Allow delete of own document.
+      allow delete: if isOwner(uid);
+
+      // Subcollections (workoutSessions, etc.) inherit full ownership.
+      match /{document=**} {
+        allow read, write: if isOwner(uid);
+      }
+    }
+
+    // No other paths are allowed (implicit deny).
+  }
+}

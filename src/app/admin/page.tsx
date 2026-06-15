@@ -40,7 +40,7 @@ export default function AdminDashboard() {
       rating: 5.0,
       reviewCount: 0,
       reviews: [],
-      variants: ["Set of 2", "Set of 4"],
+      variants: [{ id: 'set-of-2', title: 'Set of 2' }, { id: 'set-of-4', title: 'Set of 4' }],
       tags: ["new"],
       gradientTheme: newProdGradient,
     });
